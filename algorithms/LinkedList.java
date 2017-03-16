@@ -1,9 +1,9 @@
 public class Main {
   public static void main(String[] args) throws Exception {
-    Node node = new Node(6);
-    node.appendToTail(7);
-    node.appendToTail(8);
-    node.deleteNode(node, 7);
+    Node node = new Node(1);
+    node.appendToTail(2);
+    node.appendToTail(3);
+    node.deleteNode(node, 2);
 
     while (node != null) {
       System.out.println(node.data);
@@ -11,14 +11,25 @@ public class Main {
     }
     
     Stack stack = new Stack();
-    stack.push(new Integer(2));
-    stack.push(new Integer(3));
     stack.push(new Integer(4));
+    stack.push(new Integer(5));
+    stack.push(new Integer(6));
     
     Object popped = stack.pop();
     while (popped != null) {
       System.out.println(popped);
       popped = stack.pop();
+    }
+    
+    Queue queue = new Queue();
+    queue.enqueue(new Integer(7));
+    queue.enqueue(new Integer(8));
+    queue.enqueue(new Integer(9));
+    
+    Object dequeued = queue.dequeue();
+    while (dequeued != null) {
+      System.out.println(dequeued);
+      dequeued = queue.dequeue();
     }
   }
 }
@@ -60,12 +71,12 @@ class Stack {
   Node top;
   
   Object pop() {
-    if (top != null) {
-      Object item = top.data;
-      top = top.next;
-      return item;
-    }
-    return null;
+    if (top == null) 
+      return null;
+      
+    Object item = top.data;
+    top = top.next;
+    return item;
   }
   
   void push(Object item) {
@@ -76,5 +87,28 @@ class Stack {
   
   Object peek() {
     return top.data;
+  }
+}
+
+class Queue {
+  Node first, last;
+  
+  void enqueue(Object item) {
+    if (first == null) {
+      last = new Node((int)item);
+      first = last;
+    } else {
+      last.next = new Node((int)item);
+      last = last.next;
+    }
+  }
+  
+  Object dequeue() {
+    if (first == null)
+      return null;
+    
+    Object item = first.data;
+    first = first.next;
+    return item;
   }
 }
