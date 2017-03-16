@@ -9,6 +9,17 @@ public class Main {
       System.out.println(node.data);
       node = node.next;
     }
+    
+    Stack stack = new Stack();
+    stack.push(new Integer(2));
+    stack.push(new Integer(3));
+    stack.push(new Integer(4));
+    
+    Object popped = stack.pop();
+    while (popped != null) {
+      System.out.println(popped);
+      popped = stack.pop();
+    }
   }
 }
 
@@ -42,5 +53,28 @@ class Node {
       n = n.next;
     }
     return head;
+  }
+}
+
+class Stack {
+  Node top;
+  
+  Object pop() {
+    if (top != null) {
+      Object item = top.data;
+      top = top.next;
+      return item;
+    }
+    return null;
+  }
+  
+  void push(Object item) {
+    Node t = new Node((int)item);
+    t.next = top;
+    top = t;
+  }
+  
+  Object peek() {
+    return top.data;
   }
 }
