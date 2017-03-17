@@ -1,4 +1,4 @@
-public class Main {
+public class LinkedList {
   public static void main(String[] args) throws Exception {
     Node node = new Node(1);
     node.appendToTail(2);
