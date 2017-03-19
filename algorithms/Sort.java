@@ -51,7 +51,6 @@ public class Sort {
   
   public static int partition(int arr[], int left, int right) {
     int pivot = arr[(left + right) / 2];
-    System.out.println("pivot: " + pivot);
     
     while (left <= right) {
       while (arr[left] < pivot) left++;
@@ -62,8 +61,6 @@ public class Sort {
         right--;
       }
     }
-    System.out.println("left: " + left);
-    System.out.println("arr[left]: " + arr[left]);
     return left;
   }
   
