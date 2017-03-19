@@ -5,7 +5,8 @@ public class Sort {
     //insertionSort(arr);
     //selectionSort(arr);
     //shellSort(arr);
-    quickSort(arr, 0, arr.length-1);
+    //quickSort(arr, 0, arr.length-1);
+    mergeSort(arr, 0, arr.length-1);
     for (int v: arr)
       System.out.println(v);
   }
@@ -50,6 +51,7 @@ public class Sort {
   
   public static int partition(int arr[], int left, int right) {
     int pivot = arr[(left + right) / 2];
+    System.out.println("pivot: " + pivot);
     
     while (left <= right) {
       while (arr[left] < pivot) left++;
@@ -60,7 +62,43 @@ public class Sort {
         right--;
       }
     }
+    System.out.println("left: " + left);
+    System.out.println("arr[left]: " + arr[left]);
     return left;
+  }
+  
+  public static void mergeSort(int[] arr, int low, int high) {
+    if (low >= high) return;
+    
+    int middle = (low + high) / 2;
+    mergeSort(arr, low, middle);
+    mergeSort(arr, middle + 1, high);
+    merge(arr, low, middle, high);
+  }
+  
+  public static void merge(int[] arr, int low, int middle, int high) {
+    int[] helper = new int[arr.length];
+    
+    for (int i = low; i <= high; i++)
+      helper[i] = arr[i];
+    
+    int helperLeft = low;
+    int helperRight = middle + 1;
+    int current = low;
+    
+    while (helperLeft <= middle && helperRight <= high) {
+      if (helper[helperLeft] <= helper[helperRight]) {
+        arr[current] = helper[helperLeft];
+        helperLeft++;
+      } else {
+        arr[current] = helper[helperRight];
+        helperRight++;
+      }
+      current++;
+    }
+    
+    for (int i = 0; i <= middle - helperLeft; i++)
+      arr[current + i] = helper[helperLeft + i];
   }
   
   public static void swap(int[] arr, int a, int b) {
