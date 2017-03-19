@@ -1,8 +1,9 @@
 public class Sort {
   public static void main(String[] args) throws Exception {
-    int arr[] = {4, 2, 5, 3, 1};
+    int arr[] = {8, 3, 1, 2, 7, 5, 6, 4};
     //bubbleSort(arr);
-    insertionSort(arr);
+    //insertionSort(arr);
+    shellSort(arr);
     for (int v: arr)
       System.out.println(v);
   }
@@ -19,6 +20,16 @@ public class Sort {
         if (arr[j] < arr[j + 1]) break;
         swap(arr, j, j + 1);
       }
+  }
+  
+  public static void shellSort(int[] arr) {
+    int[] gaps = {8, 4, 2, 1};
+    for (int g : gaps)
+      for (int i = g; i < arr.length; i += g)
+        for (int j = i; j >= g; j -= g) {
+          if (arr[j - g] < arr[j]) break;
+          swap(arr, j, j - g);
+        }
   }
   
   public static void swap(int[] arr, int a, int b) {
