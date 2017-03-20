@@ -1,5 +1,5 @@
 public class LinkedList {
-  public static void main(String[] args) throws Exception {
+  public static void main(String[] args) {
     Node node = new Node(1);
     node.appendToTail(2);
     node.appendToTail(3);
