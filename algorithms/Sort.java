@@ -1,5 +1,5 @@
 public class Sort {
-  public static void main(String[] args) throws Exception {
+  public static void main(String[] args) {
     int arr[] = {8, 3, 1, 2, 7, 5, 6, 4};
     //bubbleSort(arr);
     //insertionSort(arr);
